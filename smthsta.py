@@ -4,6 +4,7 @@ import urllib.request
 import urllib.parse
 import re
 import time
+import random
 url='http://www.newsmth.net/bbsdoc.php?board=OurEstate'
 url2='http://www.newsmth.net/'
 
@@ -31,10 +32,12 @@ while (1==1) :
         f.write(r.group(1)+',')
         f.write(r.group(2)+',')
         f.write(r.group(3)+'\n')
+        time.sleep(60*4+random.randint(0,59)*2)
+        f.flush()
     except HTTPError as e:  
-        print('Error code:',e.code)   
+        print('Error code:',e.code)
+        time.sleep(10)
     except URLError as e:  
         print('Reason',e.reason)
-    time.sleep(5)
-    f.flush()
+        time.sleep(10)
 f.close()
